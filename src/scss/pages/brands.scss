@@ -1,0 +1,31 @@
+.page {
+  &__brands {
+
+  }
+}
+
+.brands-page {
+  &__container-hf {
+  }
+
+  &__grid {
+    margin: rem(30) 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: rem(10);
+    @media(max-width:$pc){
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media(max-width:$tablet){
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media(max-width:$mobile){
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .brands-item__image{
+    padding-bottom: percent(100,177);
+  }
+}
+
+

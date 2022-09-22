@@ -1,0 +1,69 @@
+.page {
+  &__advantages {
+    font-family: 'Lovelace';
+    color: #000000;
+    max-width: 2440px;
+    margin: 0 auto;
+  }
+}
+
+.advantages {
+  &__header {
+    text-align: center;
+  }
+
+  &__title {
+
+  }
+
+  &__content {
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column;
+    }
+  }
+
+  &__content-item {
+    border: 1px solid #000000;
+    padding: rem(40);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    @media(any-hover: hover){
+      &:hover{
+        cursor: pointer;
+        background-color: #94A073;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.advantages-item {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: rem(30);
+  }
+
+  &__number {
+    font-weight: 500;
+    @include adaptiveValue("font-size", 100, 25);
+    line-height: math.div(140,100);
+    text-align: center;
+  }
+
+  &__title {
+    font-family: 'Lovelace';
+    font-style: normal;
+    font-weight: 400;
+    @include adaptiveValue("font-size", 30, 20);
+    line-height: math.div(42,30);
+  }
+
+  &__content {
+    font-family: 'Gilroy';
+    font-weight: 400;
+    @include adaptiveValue("font-size", 20, 16, 1920, 920);
+    font-size: rem(16);
+    line-height: math.div(24,20);
+  }
+}

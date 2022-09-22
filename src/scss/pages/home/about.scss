@@ -1,0 +1,118 @@
+.page {
+  &__about {
+    color: #000000;
+    font-family: 'Lovelace';
+    @media(max-width:$tablet){
+      padding-bottom: rem(32);
+    }
+  }
+}
+
+.about {
+  &__header {
+    padding-bottom: rem(57);
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    @media(max-width:$tablet){
+        padding: 0 rem(10);
+    }
+    @media(min-width:$tablet) {
+      padding-left: rem(100);
+    }
+  }
+
+  &__background-name {
+    position: absolute;
+    top: percent(450,1185);
+    left: 1%;
+    font-family: 'TheYoungest';
+    font-style: normal;
+    font-weight: 400;
+    @include adaptiveValue("font-size", 194.388, 100);
+    line-height: math.div(367,194.388);
+
+    
+    background: linear-gradient(91.89deg, #E5D8C2 2.6%, rgba(229, 216, 194, 0.2) 98.69%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+    &__text-box {
+      display: flex;
+      @media(max-width:$tablet){
+        flex-direction: column-reverse;
+        position: relative;
+        padding: rem(20) 0;
+        .about__text-image {
+          padding-bottom: rem(200);
+        }
+          &:last-child{
+            flex-direction: column;
+            .about__text-image{
+
+              position: absolute;
+              bottom: calc(100% + 32px);
+              transform: translateX(32px);
+            }
+          }
+      }
+      &:last-child{
+        align-items: flex-end;
+      }
+      &:last-child{
+        @media(min-width:$tablet) {
+          position: relative;
+          @include adaptiveValue("left", 357, 0);
+          @include adaptiveValue("bottom", 167, 0);
+        }
+        .about__text{
+          @media(min-width:$tablet){
+            max-width: 500px;
+          }
+        }
+      }
+      gap: rem(30);
+    }
+    &__text-image {
+      position: relative;
+      padding-bottom: percent(404, 1920);
+      flex: 0 0 percent(657, 1920);
+      width: 100%;
+
+      img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+      }
+    }
+    &__text {
+      font-weight: 300;
+      @include adaptiveValue("font-size", 20, 14);
+      line-height: math.div(28,20);
+      color: #000000;
+    }
+    &__link{
+      font-size: rem(24);
+      color: rgba(148, 160, 115, 0.2);
+      transition: color 0.3s ease;
+      @media(any-hover: hover){
+        &:hover{
+              text-decoration: none;
+              color: rgba(148, 160, 115, 1);
+        }
+      }
+    }
+}

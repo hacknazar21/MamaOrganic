@@ -1,0 +1,149 @@
+.header {
+  padding: rem(36) 0;
+  @media(max-width:$tablet){
+    padding: rem(20) 0;
+  }
+  border-bottom: 1px solid #94A073;
+  position: relative;
+
+  &__hf-container {
+
+    display: flex;
+    align-items: center;
+    gap: rem(40);
+  }
+
+  &__logo {
+
+    @media(max-width:$tablet){
+      flex: 1 1 auto;
+    }
+  }
+
+  &__logo-link {
+
+  }
+
+  &__menu {
+    flex: 0 0 rem(471);
+    @media(max-width:$tablet){
+      position: absolute;
+      height: 100vh;
+      padding: rem(10);
+      background-color: #F1F0ED;
+      z-index: 1000;
+      left:0;
+      top: 0;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      &.open{
+        transform: translateX(0%);
+      }
+    }
+  }
+
+  &__menu-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: rem(10);
+    flex-wrap: wrap;
+    @media(max-width:$tablet){
+        flex-direction: column;
+    }
+  }
+
+  &__menu-item {
+    font-weight: 500;
+    font-size: rem(16);
+    line-height: math.div(16,16);
+    color: #41492C;
+  }
+
+  &__menu-link {
+  }
+  &__mobile-search{
+    flex: 0;
+    @media(min-width:$tablet){
+      display: none;
+    }
+  }
+  &__actions {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include adaptiveValue("gap", 40, 10);
+    font-size: rem(24);
+    @media(max-width:$tablet){
+        flex: 0;
+    }
+  }
+
+  &__search-form {
+    flex: 0 0 percent(350, 500);
+    @media(max-width:$tablet){
+        flex: 0 0 0px;
+    }
+    position: relative;
+  }
+
+  &__search-input {
+    padding: rem(15) rem(25);
+    background-color: #D9D9D9;
+    border-radius: 100px;
+    outline: none;
+    width: 100%;
+    font-weight: 500;
+    font-size: rem(16);
+    line-height: math.div(16,16);
+    color: #84827D;
+  }
+
+  &__search-submit {
+    position: absolute;
+    height: 100%;
+    width: 50px;
+    right: 0;
+    background-color: #94A073;
+    border-radius: 100px;
+    &:before{
+      font-size: rem(24);
+      color: #FFFFFF;
+    }
+    @media(max-width:$tablet){
+      background: none;
+      &:before{
+        color: #41492C;
+        font-size: rem(21);
+      }
+    }
+  }
+
+  &__basket {
+    position: relative;
+    span{
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      font-size: rem(5);
+      width: rem(16);
+      height: rem(16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: rem(2);
+      line-height: 0;
+      border-radius: 50%;
+      background-color: #E55930;
+      color: #ffffff;
+
+    }
+  }
+
+  &__account {
+  }
+
+  &__account-link {
+  }
+}

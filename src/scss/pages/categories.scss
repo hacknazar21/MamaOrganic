@@ -1,0 +1,49 @@
+@import 'categories/banners';
+.categories-main{
+  .brands__title{
+    border: none;
+    padding-bottom: 0;
+  }
+
+  @include adaptiveValue("margin-bottom", 90, 30);
+}
+.page {
+  &__categories {
+  }
+}
+
+.categories-page {
+  &__container {
+  }
+
+  &__menu {
+    margin-top: rem(20);
+  }
+  .popular-categories {
+    &__content {
+      border: none;
+      padding: rem(70) 0;
+      background: url("../../img/Categories/bg.png") center/cover no-repeat;
+      color: #FFFFFF;
+    }
+
+    &__menu {
+    }
+
+    &__list {
+    }
+
+    &__list-item {
+
+    }
+
+    &__list-link {
+      @media(any-hover: hover){
+        &:hover{
+          color: #49542A;
+        }
+      }
+    }
+  }
+}
+

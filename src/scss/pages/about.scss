@@ -1,0 +1,21 @@
+@import "about/items";
+@import "about/content";
+.page {
+  &__about-header {
+  }
+}
+
+.about-header {
+  &__container {
+  }
+
+  &__content {
+  }
+
+  &__title {
+    margin: rem(20) 0;
+  }
+
+  &__subtitle {
+  }
+}

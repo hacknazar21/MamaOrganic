@@ -1,0 +1,55 @@
+.select {
+	min-width: rem(250);
+	&__head {
+		@media(any-hover: hover){
+		  &:hover{
+			  cursor: pointer;
+		  }
+		}
+		padding: rem(12) rem(13);
+		border: 1px solid #C7C7C7;
+		font-weight: 400;
+		font-size: rem(16);
+		line-height: math.div(19, 16);
+		color: #000000;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		&:after{
+		    content: "";
+		    flex: 0 0 rem(13);
+			height: rem(13);
+			background-color: #D9D9D9;
+			clip-path: polygon(49% 100%, 0 0, 100% 0);
+			transition: transform 0.3s ease;
+			.open &{
+				transform: rotate(180deg);
+			}
+		}
+	}
+	&__list {
+		overflow: hidden;
+		transition: max-height 0.3s ease, border-bottom-width 0.3s ease;
+		.open &{
+			border-bottom-width: 1px;
+		}
+
+		border: 1px solid #C7C7C7;
+		border-bottom-width: 0px;
+		border-top: none;
+	}
+
+	&__option {
+		padding: rem(12) rem(13);
+		transition: background-color 0.3s ease;
+		&:not(:last-child){
+			border-bottom: 1px solid #C7C7C7;
+		}
+		@media(any-hover: hover){
+		  &:hover{
+			  background-color: #D9D9D9;
+			  cursor: pointer;
+		  }
+		}
+	}
+}

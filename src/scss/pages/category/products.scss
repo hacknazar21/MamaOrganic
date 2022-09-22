@@ -1,0 +1,61 @@
+.page {
+  &__category-products {
+    margin-top: rem(30);
+  }
+}
+
+.category-products {
+  &__box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media(max-width: em(1440)){
+      grid-template-columns: 1fr 1fr;
+    }
+    @media(max-width:$tablet){
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    border-color: #C7C7C7;
+  }
+}
+
+.category-product {
+  &__image {
+  }
+
+  &__content-box {
+  }
+
+  &__content {
+  }
+
+  &__title {
+  }
+
+  &__link {
+  }
+
+  &__subtitle {
+  }
+
+  &__info {
+  }
+
+  &__price {
+  }
+
+  &__current {
+  }
+
+  &__old {
+  }
+
+  &__rating {
+  }
+
+  &__value {
+  }
+}
+

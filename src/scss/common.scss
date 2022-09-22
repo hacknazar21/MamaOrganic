@@ -1,0 +1,218 @@
+.logo{
+  flex: 0 0 percent(171, 1720);
+}
+.logo-link{
+  position: relative;
+  padding-bottom: rem(76);
+  @media(max-width:$tablet){
+    padding-bottom: rem(40);
+  }
+  display: block;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+.section-title{
+  font-weight: 300;
+  @include adaptiveValue("font-size", 60, 20);
+  line-height: math.div(81,60);
+  
+  text-align: center;
+  @include adaptiveValue("padding-bottom", 33, 10);
+  @include adaptiveValue("padding-top", 33, 10);
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+  @media(max-width:$tablet){
+    text-align: left;
+    padding-left: rem(10);
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+  }
+}
+.products{
+  display: flex;
+}
+.product {
+  padding: rem(45.5) rem(62.5);
+  @media(max-width:$tablet){
+    padding: rem(20) rem(10);
+    display: flex;
+  }
+  @media(min-width:$tablet){
+    border: 1px solid #000000;
+  }
+
+  &-image {
+    position: relative;
+    padding-bottom: rem(300);
+    @media(max-width:$tablet){
+        flex: 0 0 rem(191);
+        padding-bottom: rem(0);
+    }
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+  }
+
+  &-content {
+  }
+  &-content-box{
+
+  }
+  &-title{
+    font-family: 'Lovelace';
+    font-style: normal;
+    font-weight: 400;
+    @include adaptiveValue("font-size", 22, 14);
+    line-height: math.div(31,22);
+    color: #000000;
+  }
+  &-link {
+
+  }
+
+  &-subtitle {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #94A073;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  &-info{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: rem(10);
+    font-family: 'Lovelace';
+    @media(max-width:$tablet){
+      flex: 0 0 rem(191);
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: rem(10);
+    }
+  }
+  &-price {
+    &__current{
+      font-weight: 400;
+      font-size: rem(22);
+      line-height: math.div(31,22);
+      color: #94A073;
+    }
+    &__old{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      text-decoration-line: line-through;
+      color: #A0A0A0;
+    }
+  }
+
+  &-rating {
+    font-size: rem(16);
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    @media(max-width:$tablet){
+        flex-direction: row;
+        gap: rem(12);
+    }
+    &__value{
+      font-weight: 400;
+      @include adaptiveValue("font-size", 16, 12);
+      line-height: math.div(14,12);
+      text-decoration: underline;
+      @media(any-hover: hover){
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      color: #5C5C5C;
+    }
+  }
+}
+.rating-item, .rating-item-fill{
+  color: #CBCBCB;
+  &:before{
+      content: "★";
+  }
+}
+.rating-item-fill {
+  color: #DEB00F;
+}
+.show-btn{
+  display: block;
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-size: rem(18);
+  line-height: math.div(22,18);
+  padding: rem(14) 0;
+  color: #41492C;
+  background: rgba(148, 160, 115, 0.2);
+  border-radius: 10px;
+  max-width: rem(290);
+  margin: 0 auto;
+  text-align: center;
+}
+.sugar {
+  &__items {
+    display: flex;
+    gap: rem(20);
+    margin-top: rem(20);
+    font-weight: 400;
+    font-size: rem(16);
+    line-height: math.div(19,16);
+    span, a{
+      color: #A1A1A1;
+    }
+  }
+
+  &__item {
+    color: #41492C;
+  }
+  &__container{
+
+  }
+}
+.container-1{
+  max-width: rem(1402);
+  padding: 0 rem(10);
+  margin: 0 auto;
+}
+.page-title{
+  font-family: 'Lovelace';
+  font-weight: 400;
+  font-size: rem(30);
+  line-height: math.div(42,30);
+  
+  color: #363636;
+}
+.page-subtitle{
+  font-weight: 500;
+  font-size: rem(16);
+  line-height: math.div(19,16);
+  max-width: rem(397);
+  color: #A3A3A3;
+}
+.contacts-main{
+  display: flex;
+  flex-direction: column;
+}

@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d3ad7e5.css",
-    "main.js": "/static/js/main.cc827b1b.js",
+    "main.css": "/static/css/main.ac4b27a7.css",
+    "main.js": "/static/js/main.814a7091.js",
     "static/js/787.d3173d15.chunk.js": "/static/js/787.d3173d15.chunk.js",
-    "static/media/bg.png": "/static/media/bg.9dbee8a2d6a80f1df72e.png",
+    "static/media/bg.png": "/static/media/bg.fbd93e6fb0d305a8ae04.png",
+    "static/media/left-bg.png": "/static/media/left-bg.1c5f95619ff83bd068f6.png",
+    "static/media/right-bg.png": "/static/media/right-bg.07243e1d1edde739e152.png",
     "static/media/bg2.png": "/static/media/bg2.84d4819c9d54da4e1ade.png",
-    "static/media/1.png": "/static/media/1.5b8774053ba4db33786b.png",
+    "static/media/2.png": "/static/media/2.20109b86d424ccb3c62c.png",
+    "static/media/1.png": "/static/media/1.6a9e17cabc68d6663fbb.png",
     "static/media/bg1.png": "/static/media/bg1.40e5bea9b6e7f931ad1e.png",
     "static/media/TYScript-Rg.ttf": "/static/media/TYScript-Rg.a7cee9664c6846b8d1d0.ttf",
     "static/media/01.png": "/static/media/01.f335e58e94471fdfab94.png",
@@ -15,28 +18,23 @@
     "static/media/04.png": "/static/media/04.2ff3431129aafa5919ec.png",
     "static/media/06.png": "/static/media/06.0d3e0dbcda286c6ed6e7.png",
     "static/media/03.png": "/static/media/03.bbd4f086a902288d4ec6.png",
-    "static/media/2.png": "/static/media/2.78b84961eed2ed459057.png",
-    "static/media/3.png": "/static/media/3.fd41f2c10c7de9b9118d.png",
     "static/media/Lovelace-Light.ttf": "/static/media/Lovelace-Light.0d670d706db12d724f6b.ttf",
     "static/media/Lovelace-Bold.ttf": "/static/media/Lovelace-Bold.23b64b372d769633f5db.ttf",
     "static/media/Lovelace-Regular.ttf": "/static/media/Lovelace-Regular.b94e019519fb52230d38.ttf",
     "static/media/Lovelace-Medium.ttf": "/static/media/Lovelace-Medium.4d4711dea126a76ed48c.ttf",
-    "static/media/6.png": "/static/media/6.5b8774053ba4db33786b.png",
-    "static/media/5.png": "/static/media/5.3848a4f5089f99fe01f3.png",
-    "static/media/4.png": "/static/media/4.89301f789d9aad8980c5.png",
     "static/media/Gilroy-Medium.ttf": "/static/media/Gilroy-Medium.1c23f810e531d0702f76.ttf",
     "static/media/Gilroy-Semibold.ttf": "/static/media/Gilroy-Semibold.41fa36c3c8e966b35423.ttf",
     "static/media/Gilroy-Bold.ttf": "/static/media/Gilroy-Bold.901a60fc2835c74fba67.ttf",
     "static/media/logo.png": "/static/media/logo.7b72389c2b2188adc2eb.png",
     "static/media/bg.svg": "/static/media/bg.bdc222aada26dff94e1a.svg",
-    "static/media/icons.ttf": "/static/media/icons.4514a804fc2ad2701c32.ttf",
+    "static/media/icons.ttf": "/static/media/icons.c0beab3a3d5a521b3e47.ttf",
     "index.html": "/index.html",
-    "main.6d3ad7e5.css.map": "/static/css/main.6d3ad7e5.css.map",
-    "main.cc827b1b.js.map": "/static/js/main.cc827b1b.js.map",
+    "main.ac4b27a7.css.map": "/static/css/main.ac4b27a7.css.map",
+    "main.814a7091.js.map": "/static/js/main.814a7091.js.map",
     "787.d3173d15.chunk.js.map": "/static/js/787.d3173d15.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d3ad7e5.css",
-    "static/js/main.cc827b1b.js"
+    "static/css/main.ac4b27a7.css",
+    "static/js/main.814a7091.js"
   ]
 }

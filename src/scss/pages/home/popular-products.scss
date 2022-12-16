@@ -2,24 +2,62 @@
   &__popular {
     font-family: 'Lovelace';
     color: #000;
+    margin-bottom: rem(80);
+    @media(max-width:$tablet){
+      padding: 0 rem(10);
+      margin-top: rem(20);
+
+    }
   }
 }
 
 .popular {
   &__header {
+    margin-bottom: rem(50);
+    @include adaptiveValue("margin-bottom", 50, 20);
   }
 
   &__title {
 
   }
-
+  &__container{
+    overflow: hidden;
+  }
   &__content {
+    position: relative;
+    .brands__buttons {
+      .brands-prev-btn{
+        left: rem(15);
+      }
+      .brands-next-btn{
+        right: rem(15);
+      }
+    }
   }
 
   &__content-item {
   }
+  &__swiper-wrapper{
+  }
 }
-
+.popular-products__swipe-anim{
+  @media(min-width:$tablet){
+    display: none;
+  }
+  position: absolute;
+  z-index: 100;
+  right: rem(10);
+  padding-bottom: rem(50);
+  width: rem(50);
+  img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+  }
+}
 .section-title {
 }
 

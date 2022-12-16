@@ -9,37 +9,46 @@ export default function About() {
           <h2 className="about__title section-title">О компании</h2>
         </div>
         <div className="about__content">
-          <div className="about__background-name">company</div>
-          <div className="about__text-box">
-            <div className="about__text-image">
-              <img src={require("../../img/Home/About/1.png")} alt="" />
+          {/*<div className="about__background-name">company</div>*/}
+          <div className="about__content-items">
+            <div className="about__text-box">
+              <div className="about__text-image">
+                <img
+                  loading="lazy"
+                  src={require("../../img/Home/About/1.png")}
+                  alt=""
+                />
+              </div>
+              <div className="about__text">
+                <p>
+                  Mama Organic собрала команду людей, которые привнесли в жизнь
+                  идею - дать возможность казахстанцам приобретать эффективные
+                  средства из сферы натурального и органического производства со
+                  всего мира.
+                </p>
+                <p>
+                  Мы поставляем лучшую натуральную и органическую косметику, а
+                  также бытовую нехимию, проводя качественный анализ как цены,
+                  так и анализ состава.
+                </p>
+              </div>
             </div>
-            <div className="about__text">
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-                Exercitation veniam consequat sunt nostrud amet.
-              </p>
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint.
-              </p>
-            </div>
-          </div>
-          <div className="about__text-box">
-            <div className="about__text-image">
-              <img src={require("../../img/Home/About/2.png")} alt="" />
-            </div>
-            <div className="about__text">
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-                Exercitation veniam consequat sunt nostrud amet.
-              </p>
-              <Link
-                to={"/about"}
-                className="about__link _icon-arrow-long"
-              ></Link>
+            <div className="about__text-box">
+              <div className="about__text-image">
+                <img
+                  loading="lazy"
+                  src={require("../../img/Home/About/2.png")}
+                  alt=""
+                />
+              </div>
+              <div className="about__text">
+                <p>
+                  Мы хотим, чтобы натуральная и органическая продукция со всего
+                  мира была легко доступной для каждого казахстанца, как она
+                  доступна для каждого европейца.
+                </p>
+                <a href={"/about"} className="about__link _icon-arrow-long"></a>
+              </div>
             </div>
           </div>
         </div>

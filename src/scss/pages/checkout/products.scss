@@ -1,0 +1,142 @@
+.page {
+  &__checkout-products {
+    @media(min-width:$tablet){
+      padding-left: rem(100);
+    }
+    padding-top: rem(30);
+    z-index: 1;
+    font-family: 'Gilroy';
+    width: 100%;
+  }
+}
+
+.checkout-products {
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column;
+      position: relative;
+    }
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: rem(10);
+    width: 100%;
+  }
+}
+
+.checkout-product {
+  &__image {
+    position: relative;
+    padding-bottom: rem(80);
+    flex:  0 0 rem(80);
+    background-color: #fff;
+
+    margin-right: rem(20);
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+  }
+
+  &__info {
+    @media(min-width:$tablet){
+      max-width: rem(150);
+    }
+    @media(max-width:$tablet){
+      max-width: rem(200);
+    }
+    font-weight: 500;
+    flex: 1 1 auto;
+
+  }
+
+  &__article {
+    font-size: rem(12);
+    line-height: math.div(15,12);
+    color: #E55930;
+    margin-bottom: rem(10);
+  }
+
+  &__name {
+    font-size: rem(16);
+    line-height: math.div(19,16);
+    color: #41492C;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__amount {
+    @media(min-width:$tablet){
+      margin-left: rem(129);
+    }
+    display: flex;
+    background-color: #E4E4E4;
+    border-radius: 10px;
+    align-self: flex-start;
+    padding: rem(5);
+    span{
+      display: block;
+      svg{
+        cursor: pointer;
+      }
+    }
+    font-size: rem(14);
+    line-height: math.div(18,14);
+    gap: rem(5);
+    align-items: center;
+  }
+
+  &__amount-minus {
+    max-height: rem(24);
+
+  }
+
+  &__amount-value {
+    font-weight: 600;
+    width: rem(30);
+    text-align: center;
+    height: rem(18);
+    line-height: 1.5;
+  }
+
+  &__amount-plus {
+    max-height: rem(24);
+    color: #41492C;
+  }
+
+  &__price {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #313525;
+    padding: rem(7.5) 0;
+    @media(min-width:$tablet){
+      margin-left: rem(50);
+    }
+  }
+
+  &__remove {
+    @media(min-width:$tablet){
+      margin-left: auto;
+    }
+    @media(max-width:$tablet){
+      position: absolute;
+      right: rem(10);
+    }
+  }
+}

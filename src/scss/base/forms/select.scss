@@ -1,5 +1,6 @@
 .select {
 	min-width: rem(250);
+	position: relative;
 	&__head {
 		@media(any-hover: hover){
 		  &:hover{
@@ -34,6 +35,9 @@
 			border-bottom-width: 1px;
 		}
 
+		position: absolute;
+		z-index: 100;
+		width: 100%;
 		border: 1px solid #C7C7C7;
 		border-bottom-width: 0px;
 		border-top: none;
@@ -42,6 +46,7 @@
 	&__option {
 		padding: rem(12) rem(13);
 		transition: background-color 0.3s ease;
+		background-color: #F1F0ED;
 		&:not(:last-child){
 			border-bottom: 1px solid #C7C7C7;
 		}

@@ -7,21 +7,21 @@ import CategoryProducts from "./CategoryProducts";
 import useHttp from "../../hooks/hooks.http";
 import { useParams } from "react-router-dom";
 
-export default function Category() {
-  const { id } = useParams();
-  const { request, success, isOk, error, loading } = useHttp();
+export default function ParentCategory() {
+  const { id, parent_id } = useParams();
+  const { request } = useHttp();
   const [products, setProducts] = useState(null);
   useEffect(() => {
     const req = async () => {
       try {
-        const data = await request(`/api/products/?category_id=${id}`);
+        const data = await request(`/api/categories/${id}`);
         if (data) {
-          setProducts(data);
+          setProducts(data.products);
         }
       } catch (e) {}
     };
     req();
-  }, []);
+  }, [id, request]);
   return (
     <>
       <Header />
@@ -30,6 +30,10 @@ export default function Category() {
           sugar={[
             { href: "/", title: "Главная" },
             { href: "/categories", title: "Категории" },
+            {
+              href: `/categories/#category-${parent_id}`,
+              title: products?.results[0]?.category.parent.name || "",
+            },
             { href: "", title: products?.results[0]?.category.name || "" },
           ]}
           sugarClass={""}
@@ -45,7 +49,7 @@ export default function Category() {
             { name: "Price", title: "Стоимость", items: ["egwg"] },
           ]}
         />
-        <CategoryProducts products={products?.results} />
+        <CategoryProducts products={products} />
       </main>
       <Footer />
     </>

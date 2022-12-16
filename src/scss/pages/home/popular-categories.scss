@@ -2,6 +2,7 @@
   &__popular-categories {
     font-family: 'Lovelace';
     color: #000000;
+    position: relative;
   }
 }
 
@@ -41,7 +42,7 @@
 
   &__title {
     @media(max-width:$tablet){
-      text-align: center;
+
     }
   }
 
@@ -50,10 +51,11 @@
 
     @media(max-width:$tablet){
       padding: rem(30) 0;
-      background-color: rgba(148, 160, 115, 0.2);
     }
-    border-top: 1px solid #000000;
-    border-bottom: 1px solid #000000;
+
+    @media(min-width:$tablet){
+      border-top: 1px solid #000000;
+    }
     @media(max-width:$tablet){
       border-bottom: 1px solid rgba(148, 160, 115, 0.2);
     }
@@ -65,7 +67,7 @@
     flex-direction: column;
     justify-content: center;
     gap: rem(30);
-
+    margin: 0 auto;
   }
 
   &__list {
@@ -73,11 +75,17 @@
     font-weight: 300;
     @include adaptiveValue("font-size", 30, 16);
     line-height: math.div(42,30);
-    
-
     display: flex;
+    @include adaptiveValue("max-width", 1090, 100);
+    @media(max-width:$tablet){
+        max-width: rem(500);
+    }
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
     gap: rem(30);
     padding: rem(10);
+    @include adaptiveValue("row-gap", 30, 10);
     @media(max-width:$tablet){
         flex-wrap: wrap;
       align-items: center;
@@ -87,24 +95,55 @@
 
   &__list-item {
     display: flex;
-    gap: rem(30);
-    &:not(:last-child){
-        &:after{
-            content: "/";
-        }
-    }
+    align-items: center;
   }
 
   &__list-link {
+    flex: 1 1 auto;
     transition: color 0.3s ease;
-    &:active{
-      color:#E55930;
-    }
+    padding: 0 rem(30);
+    border: 1px solid #FFFFFF;
+    border-radius: 1000px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media(any-hover: hover){
       &:hover{
-        color: #81954D;
         text-decoration: none;
+        background-color: #FFFFFF;
+        border: 1px solid #FFFFFF;
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+        color: #41492C;
       }
+    }
+    text-align: center;
+    &.active{
+      background-color: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+      color: #41492C;
+    }
+  }
+  &__show-all{
+    @media(max-width:$tablet){
+      position: absolute;
+      top: rem(10);
+      right: rem(10);
+      p{
+        display: none;
+      }
+      &:before{
+          content: "все";
+
+      }
+
+      margin-top: 0;
+      padding: rem(6.5) rem(15);
+      border: 1px solid #DADADA;
+      border-radius: 1000px;
+      background: none;
     }
   }
 }

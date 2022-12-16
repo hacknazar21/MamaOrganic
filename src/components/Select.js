@@ -1,85 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      height: 0,
-    };
-    this.clickHandler = this.clickHandler.bind(this);
-    this.selectHandler = this.selectHandler.bind(this);
+export default function Select({
+  className,
+  key,
+  callback,
+  name,
+  title,
+  items,
+}) {
+  const [open, setOpen] = useState(false);
+  const [height, setHeight] = useState(0);
+  const wrapper = React.createRef();
+  const head = React.createRef();
+  useEffect(() => {
+    if (items?.length) {
+      console.log(wrapper.current);
+      const height = wrapper.current?.getBoundingClientRect().height;
+      setHeight(height);
+      wrapper.current?.setAttribute("style", `max-height:0px;`);
+    }
+  }, [JSON.stringify(items)]);
+  useEffect(() => {
+    if (wrapper.current && open) {
+      wrapper.current.setAttribute("style", `max-height:${height}px;`);
+      wrapper.current.parentElement.classList.add("open");
+    } else if (wrapper.current && !open && items?.length) {
+      wrapper.current.setAttribute("style", `max-height:0px;`);
+      wrapper.current.parentElement.classList.remove("open");
+    }
+  }, [open]);
+  function clickHandler(event) {
+    setOpen((prevState) => !prevState);
   }
-  wrapper = React.createRef();
-  head = React.createRef();
-  componentDidMount() {
-    const height = this.wrapper.current?.getBoundingClientRect().height;
-    this.setState((state) => {
-      return (state.height = height);
-    });
-    this.wrapper.current?.setAttribute("style", `max-height:0px;`);
-  }
-  clickHandler(event) {
-    this.setState(
-      (state) => {
-        return { open: !state.open };
-      },
-      () => {
-        if (this.wrapper.current && this.state.open) {
-          this.wrapper.current.setAttribute(
-            "style",
-            `max-height:${this.state.height}px;`
-          );
-          this.wrapper.current.parentElement.classList.add("open");
-        } else if (this.wrapper.current && !this.state.open) {
-          this.wrapper.current.setAttribute("style", `max-height:0px;`);
-          this.wrapper.current.parentElement.classList.remove("open");
-        }
-      }
-    );
-  }
-  selectHandler(event) {
-    if (this.wrapper.current && this.head.current) {
-      this.setState((state) => {
-        return { open: !state.open };
-      });
-      this.wrapper.current.setAttribute("style", `max-height:0px;`);
-      this.head.current.innerText = event.target.innerText;
-      this.props.callback(event);
+  function selectHandler(event) {
+    if (wrapper.current && head.current) {
+      setOpen((prevState) => !prevState);
+      wrapper.current.setAttribute("style", `max-height:0px;`);
+      head.current.innerText = event.target.innerText;
+      callback(event);
     }
   }
 
-  render() {
-    return (
-      <div
-        className={"select" + " " + this.props.className}
-        id={"select-" + this.props.name}
-        key={this.props.key}
-      >
-        <div
-          ref={this.head}
-          onClick={this.clickHandler}
-          className="select__head"
-        >
-          {this.props.title}
-        </div>
-        <ul ref={this.wrapper} className="select__list">
-          {this.props.items.map((item) => {
-            return (
-              <li
-                onClick={this.selectHandler}
-                data-name={this.props.name}
-                data-value={item}
-                className="select__option"
-              >
-                {item}
-              </li>
-            );
-          })}
-        </ul>
+  return (
+    <div className={"select" + " " + className} id={"select-" + name} key={key}>
+      <div ref={head} onClick={clickHandler} className="select__head">
+        {title}
       </div>
-    );
-  }
+      <ul ref={wrapper} className="select__list">
+        {items?.map((item) => {
+          return (
+            <li
+              key={key}
+              onClick={selectHandler}
+              data-name={name}
+              data-value={item.value}
+              className="select__option"
+            >
+              {item.name}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
-
-export default Select;

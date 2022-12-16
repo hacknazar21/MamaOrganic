@@ -4,6 +4,9 @@ import Footer from "../Footer";
 import { Sugar } from "../Sugar";
 
 export default function Contacts() {
+  useEffect(() => {
+    document.title = "Наши контакты";
+  }, []);
   return (
     <>
       <Header />

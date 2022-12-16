@@ -15,6 +15,7 @@
     @include adaptiveValue("gap", 74, 0);
     @media(max-width:$tablet){
         flex-direction: column;
+        gap: rem(30);
     }
   }
 
@@ -38,8 +39,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-
+    position: relative;
+    padding-bottom: rem(60);
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      transform: translate(-50%,-50%);
+        width: 67%;
+        height: 67%;
+        object-fit: contain;
+    }
   }
 
   &__title {
@@ -55,7 +65,7 @@
     font-weight: 400;
     font-size: rem(16);
     line-height: math.div(19,16);
-    
+    text-align: justify;
     color: #7C7C7C;
   }
 }

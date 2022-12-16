@@ -27,7 +27,6 @@
 	&__content {
 		overflow: hidden;
 		transition: max-height 0.3s ease, opacity 0.3s ease;
-		//opacity: 0;
 	}
 	&__open{
 		flex: 0 0 rem(16);
@@ -45,7 +44,7 @@
 			width: 100%;
 			top: calc(50% - 1px);
 			height: 2px;
-			background-color: #7E91D6;
+			background-color: #94A073;
 			transition: transform 0.3s ease;
 		}
 		span:last-child{

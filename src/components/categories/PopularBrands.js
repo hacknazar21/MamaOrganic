@@ -1,11 +1,23 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation, Swiper } from "swiper";
 import { Link } from "react-router-dom";
+import useHttp from "../../hooks/hooks.http";
+import placeholderImg from "../../img/placeholder.jpeg";
 
 export default function PopularBrands({ title }) {
   const slider = useRef();
+  const { request, loading, error, isOk } = useHttp();
+  const [brands, setBrands] = useState([]);
   useEffect(() => {
-    if (slider.current.className && window.innerWidth > 768)
+    (async () => {
+      const data = await request("/api/brands/");
+      if (data) {
+        setBrands(data);
+      }
+    })();
+  }, []);
+  useEffect(() => {
+    if (slider.current.className)
       new Swiper("." + slider.current.classList[0], {
         modules: [Navigation, Autoplay],
         observer: true,
@@ -54,41 +66,22 @@ export default function PopularBrands({ title }) {
         <div className="brands__slider">
           <div ref={slider} className="brands__content brands-swiper">
             <div className="brands__swiper-wrapper swiper-wrapper">
-              <div className="brands__content-item swiper-slide brands-item">
-                <a href="" className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/1.png")} alt="" />
-                </a>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/2.png")} alt="" />
-                </div>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/3.png")} alt="" />
-                </div>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/4.png")} alt="" />
-                </div>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/5.png")} alt="" />
-                </div>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/6.png")} alt="" />
-                </div>
-              </div>
-              <div className="brands__content-item swiper-slide brands-item">
-                <div className="brands-item__image">
-                  <img src={require("../../img/Home/Brands/6.png")} alt="" />
-                </div>
-              </div>
+              {brands?.map((brand) => {
+                return (
+                  <div className="brands__content-item swiper-slide brands-item">
+                    <a
+                      href={"/brands/" + brand.link}
+                      className="brands-item__image"
+                    >
+                      <img
+                        loading="lazy"
+                        src={brand.image || placeholderImg}
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                );
+              })}
             </div>
             <div className="brands__buttons">
               <button className="swiper-prev-btn brands-prev-btn _icon-arrow-slider"></button>
@@ -96,8 +89,11 @@ export default function PopularBrands({ title }) {
             </div>
           </div>
         </div>
-        <Link to={"/brands"}>
-          <a className="brands__show-all show-btn">Смотреть все бренды</a>
+        <Link
+          to={"/brands"}
+          className="popular-brands__show-all brands__show-all show-btn"
+        >
+          <p>Смотреть все бренды</p>
         </Link>
       </div>
     </section>

@@ -1,0 +1,72 @@
+$strokeDash: 12040;
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000000;
+  background-color: white;
+  transition: opacity 0.3s ease;
+  &__bg {
+    svg{
+      width: 200%;
+      height: 200%;
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      path{
+        stroke-dasharray: $strokeDash;
+        stroke-dashoffset: $strokeDash;
+        animation: preloader-anim 4s linear infinite;
+      }
+    }
+  }
+
+  &__logo {
+    z-index: 0;
+    position: relative;
+    padding-bottom: percent(735, 1920);
+    flex: 0 0 percent(1718, 7541);
+    animation: preloader-logo-anim 3s linear infinite;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+  }
+}
+@keyframes preloader-anim {
+  0%{
+    stroke-dashoffset: $strokeDash;
+  }
+  50%{
+    stroke-dashoffset: 0;
+  }
+  100%{
+    stroke-dashoffset: $strokeDash;
+  }
+}
+@keyframes preloader-logo-anim {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+.preloader-enter {
+  opacity: 1;
+}
+.preloader-exit {
+  opacity: 0;
+}

@@ -1,6 +1,9 @@
 .page {
   &__category-products {
     margin-top: rem(30);
+    @media(max-width:$tablet){
+      padding: 0 rem(10);
+    }
   }
 }
 
@@ -8,11 +11,13 @@
   &__box {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: rem(30);
+    margin-bottom: rem(30);
     @media(max-width: em(1440)){
       grid-template-columns: 1fr 1fr;
     }
     @media(max-width:$tablet){
-      grid-template-columns: 1fr;
+      gap: rem(10);
     }
   }
 

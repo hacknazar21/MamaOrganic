@@ -1,5 +1,6 @@
 .page {
   &__about-content {
+    margin-bottom: rem(80);
   }
 }
 
@@ -9,33 +10,32 @@
 
   &__box {
     display: flex;
+    flex-direction: column;
     @media(max-width:$tablet){
-        flex-direction: column;
         margin-bottom: rem(20);
-        gap: rem(10);
+        gap: rem(30);
     }
     gap: rem(25);
   }
 
   &__item {
-    &:first-child{
-      flex: 0 0 percent(399, 1578); //rem(399)
-      .about-content__item-image{
-        padding-bottom: percent(366, 399); //rem(366)
-      }
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column;
+        &:first-child{
+          flex-direction: column-reverse;
+          gap: rem(30);
+        }
     }
-    &:nth-child(2){
-      flex: 0 0 percent(334, 1578); //rem(399)
-      .about-content__item-image{
-        padding-bottom: percent(137, 334); //rem(366)
-      }
-    }
+    gap: rem(32);
   }
 
   &__item-image {
     position: relative;
-    @media(min-width:$tablet){
-      margin-bottom: rem(32);
+    flex: 0 0 50%;
+    padding-bottom: 25%;
+    @media(max-width:$tablet){
+      padding-bottom: rem(250);
     }
     img {
         position: absolute;
@@ -43,20 +43,26 @@
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
   }
 
   &__item-text {
-    p{
-      @media(max-width:$tablet){
-        &:first-child{
-          margin-top: rem(10);
-        }
-      }
-      &:not(:last-child){
-        @include adaptiveValue("margin-bottom", 40, 10);
-      }
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    color: #5C5C5C;
+    text-align: justify;
+    h2{
+      font-family: 'Lovelace';
+      font-style: normal;
+      font-weight: 400;
+      @include adaptiveValue("font-size", 30, 20);
+      line-height: math.div(42,30);
+      color: #41492C;
+      padding-bottom: rem(10);
+      border-bottom: 1px solid #C7C7C7;
+      margin-bottom: rem(20);
     }
   }
 }

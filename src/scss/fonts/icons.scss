@@ -20,6 +20,12 @@
 		display: block;
 	}
 }
+._icon-percent:before {
+	content: "\e90a";
+}
+._icon-bag:before {
+	content: "\e90b";
+}
 ._icon-arrow-long:before {
 	content: "\e908";
 }

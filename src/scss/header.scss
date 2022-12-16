@@ -5,43 +5,139 @@
   }
   border-bottom: 1px solid #94A073;
   position: relative;
-
-  &__hf-container {
-
+  @media(max-width:$tablet){
+    position: fixed;
+    z-index: 20000;
+    height: rem(80);
+    width: 100%;
+    background-color: #F1F0ED;
     display: flex;
     align-items: center;
-    gap: rem(40);
-  }
-
-  &__logo {
-
-    @media(max-width:$tablet){
-      flex: 1 1 auto;
+    & + main{
+      padding-top: rem(130);
     }
   }
-
-  &__logo-link {
-
-  }
-
-  &__menu {
-    flex: 0 0 rem(471);
+  &__hf-container {
+    display: flex;
+    align-items: center;
     @media(max-width:$tablet){
-      position: absolute;
-      height: 100vh;
-      padding: rem(10);
-      background-color: #F1F0ED;
-      z-index: 1000;
-      left:0;
-      top: 0;
-      transform: translateX(-100%);
+      justify-content: space-between;
+    }
+    gap: rem(40);
+    @media(max-width:$tablet){
+      flex: 1 1 auto;
+      .menu-open & {
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: rem(78);
+          top: 0;
+          left: 0;
+          background-color: #F1F0ED;
+          z-index: 1;
+        }
+      }
+    }
+  }
+  &__burger-open{
+    width: rem(25);
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    z-index: 1001;
+    @media(min-width:$tablet){
+      display: none;
+    }
+    span:nth-child(1){
+      background-color: #94A073;
+
+    }
+    span:nth-child(2){
+      background-color: #41492C;
+    }
+    span:nth-child(3){
+      background-color: #000000;
+    }
+    .menu-open & span:nth-child(1){
+      transform: translate(10%, 250%) rotate(45deg);
+    }
+    .menu-open & span:nth-child(2){
+      transform: scale(0);
+    }
+    .menu-open & span:nth-child(3){
+      transform: translate(10%, -500%) rotate(-45deg);
+    }
+    span{
       transition: transform 0.3s ease;
-      &.open{
-        transform: translateX(0%);
+      transform-origin: center;
+      width: 100%;
+      height: rem(2);
+      border-radius: 10px;
+    }
+  }
+  &__logo {
+    @media(max-width:$tablet){
+      width: rem(94);
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      z-index: 2;
+      .search-open &{
+        display: none;
       }
     }
   }
 
+  &__logo-link {
+    @media(max-width:$tablet){
+        position: relative;
+        width: 100%;
+        padding-bottom: rem(40);
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+  }
+
+  &__menu {
+    flex: 0 0 rem(600);
+    @media(max-width:$tablet){
+      position: fixed;
+      height: calc(100vh);
+      width: 100vw;
+      padding: rem(10);
+      background-color: #F1F0ED;
+      left:0;
+      top: 0px;
+      padding-top: rem(90);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      .menu-open &{
+        transform: translateX(0%);
+      }
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+      z-index: 0;
+    }
+  }
+  &__menu-footer-mobile{
+    @media(min-width:$tablet){
+      display: none;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: rem(30);
+    margin-top: auto;
+    padding-bottom: rem(80);
+  }
   &__menu-list {
     width: 100%;
     display: flex;
@@ -50,40 +146,83 @@
     flex-wrap: wrap;
     @media(max-width:$tablet){
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: rem(42);
+      flex: 1 1 auto;
     }
   }
+  .footer__list-item{
+    font-family: 'Lovelace';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    color: #000000;
+    margin: 0 !important;
 
+    @media(min-width:$tablet){
+      display: none;
+    }
+  }
   &__menu-item {
     font-weight: 500;
     font-size: rem(16);
     line-height: math.div(16,16);
+    @media(max-width:$tablet){
+      font-family: 'Lovelace';
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 25px;
+      text-align: center;
+      color: #000000;
+    }
     color: #41492C;
   }
 
   &__menu-link {
   }
   &__mobile-search{
-    flex: 0;
+    display: flex;
+    align-items: center;
     @media(min-width:$tablet){
       display: none;
     }
+    .search-open &{
+      flex: 1 1 auto;
+    }
   }
   &__actions {
-    flex: 1 1 auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    @media(min-width:$tablet){
+        flex: 1 1 auto;
+    }
     @include adaptiveValue("gap", 40, 10);
     font-size: rem(24);
+    .search-open &{
+      display: none;
+    }
     @media(max-width:$tablet){
-        flex: 0;
+      position: relative;
+      z-index: 20003;
     }
   }
 
   &__search-form {
-    flex: 0 0 percent(350, 500);
+    flex: 0 0 percent(350, 961);
     @media(max-width:$tablet){
-        flex: 0 0 0px;
+      background-color: #F1F0ED;
+      //flex: 0 0 0%;
+      //transition: flex-basis 0.3s ease;
+      position: absolute;
+      bottom: 0;
+      left: rem(0);
+      transform: translateY(100%);
+      flex: 0 0 100%;
+      width: 100%;
+      padding: 0 rem(10) rem(10) rem(10);
     }
     position: relative;
   }
@@ -98,23 +237,27 @@
     font-size: rem(16);
     line-height: math.div(16,16);
     color: #84827D;
+
   }
 
   &__search-submit {
     position: absolute;
-    height: 100%;
-    width: 50px;
+    height: rem(50);
+    width: rem(50);
     right: 0;
     background-color: #94A073;
     border-radius: 100px;
+    @media(max-width:$tablet){
+        right: rem(10);
+    }
     &:before{
       font-size: rem(24);
       color: #FFFFFF;
     }
     @media(max-width:$tablet){
-      background: none;
+      //background-color:  #F1F0ED;
       &:before{
-        color: #41492C;
+        //color: #41492C;
         font-size: rem(21);
       }
     }
@@ -122,7 +265,12 @@
 
   &__basket {
     position: relative;
-    span{
+    @media(any-hover: hover){
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    > span{
       position: absolute;
       bottom: -5px;
       right: -5px;
@@ -142,6 +290,11 @@
   }
 
   &__account {
+    @media(any-hover: hover){
+      &:hover{
+            text-decoration: none;
+      }
+    }
   }
 
   &__account-link {

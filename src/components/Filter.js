@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "./Select";
 
-export default function Filter({ selects }) {
+export default function Filter({ selects, onCancel }) {
   return (
     <>
       <section className="page__filter filter">
@@ -16,6 +16,9 @@ export default function Filter({ selects }) {
                 />
               );
             })}
+            <button className={"filter__cancel"} onClick={onCancel}>
+              Сброс фильтра
+            </button>
           </div>
         </div>
       </section>

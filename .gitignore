@@ -8,7 +8,7 @@
 # testing
 /coverage
 
-
+/eco_care-master
 # misc
 .DS_Store
 .env.local

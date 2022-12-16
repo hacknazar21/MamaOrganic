@@ -1,96 +1,47 @@
 import React, { useEffect, useRef } from "react";
 import { Autoplay, Navigation, Swiper } from "swiper";
 import { Link } from "react-router-dom";
+import placeholderImg from "../../img/placeholder.jpeg";
 
-export default function CategoriesBanners({ title }) {
+export default function CategoriesBanners({ category, setRef }) {
   return (
-    <section className="page__categories-banners categories-banners">
+    <section
+      ref={(ref) => {
+        setRef(ref);
+      }}
+      className="page__categories-banners categories-banners"
+    >
       <div className="categories-banners__container">
         <div className="categories-banners__items">
-          <div className="categories-banners__item category-banner">
-            <div className="category-banner__info">
-              <h2 className="category-banner__title">Скраб для тела</h2>
-              <div className="category-banner__text">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
-                </p>
+          {category?.child_categories.map((categoryChild) => {
+            return (
+              <div className="categories-banners__item category-banner">
+                <div className="category-banner__info">
+                  <h2 className="category-banner__title">
+                    {categoryChild.name}
+                  </h2>
+                  <div className="category-banner__text">
+                    <p>{categoryChild.description}</p>
+                  </div>
+                  <a
+                    href={`/category/${categoryChild.link}`}
+                    className="category-banner__show-more show-btn"
+                  >
+                    <p>Смотреть товары</p>
+                  </a>
+                </div>
+                {categoryChild.image && (
+                  <div className="category-banner__image">
+                    <img
+                      loading="lazy"
+                      src={categoryChild.image || placeholderImg}
+                      alt=""
+                    />
+                  </div>
+                )}
               </div>
-              <Link
-                to={"/categories/1"}
-                className="category-banner__show-more show-btn"
-              >
-                Смотреть товары
-              </Link>
-            </div>
-            <div className="category-banner__image">
-              <img src={require("../../img/About/2.png")} alt="" />
-            </div>
-          </div>
-          <div className="categories-banners__item category-banner">
-            <div className="category-banner__info">
-              <h2 className="category-banner__title">Скраб для тела</h2>
-              <div className="category-banner__text">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
-                </p>
-              </div>
-              <Link
-                to={"/categories/1"}
-                className="category-banner__show-more show-btn"
-              >
-                Смотреть товары
-              </Link>
-            </div>
-            <div className="category-banner__image">
-              <img src={require("../../img/About/2.png")} alt="" />
-            </div>
-          </div>
-          <div className="categories-banners__item category-banner">
-            <div className="category-banner__info">
-              <h2 className="category-banner__title">Скраб для тела</h2>
-              <div className="category-banner__text">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
-                </p>
-              </div>
-              <Link
-                to={"/categories/1"}
-                className="category-banner__show-more show-btn"
-              >
-                Смотреть товары
-              </Link>
-            </div>
-            <div className="category-banner__image">
-              <img src={require("../../img/About/2.png")} alt="" />
-            </div>
-          </div>
-          <div className="categories-banners__item category-banner">
-            <div className="category-banner__info">
-              <h2 className="category-banner__title">Скраб для тела</h2>
-              <div className="category-banner__text">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
-                </p>
-              </div>
-              <Link
-                to={"/categories/1"}
-                className="category-banner__show-more show-btn"
-              >
-                Смотреть товары
-              </Link>
-            </div>
-            <div className="category-banner__image">
-              <img src={require("../../img/About/2.png")} alt="" />
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

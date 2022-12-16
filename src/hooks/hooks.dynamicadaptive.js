@@ -7,7 +7,6 @@ export const useDynamicAdaptive = () => {
   useEffect(() => {
     window.addEventListener("resize", createDynamic);
     if (dynamicRefs.length > 0 && !isCreated) {
-      console.log(dynamicRefs);
       createDynamic();
     }
   }, [dynamicRefs]);
@@ -32,7 +31,6 @@ export const useDynamicAdaptive = () => {
       }
     });
   };
-
   const addDynamicRefs = (ref) => {
     ref = ref.filter((refObj) => refObj !== null);
     for (const refElement of ref) {
@@ -49,6 +47,5 @@ export const useDynamicAdaptive = () => {
       return [...prev, ...ref];
     });
   };
-
   return { addDynamicRefs };
 };

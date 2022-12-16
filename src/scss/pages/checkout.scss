@@ -1,0 +1,27 @@
+@import "checkout/form";
+@import "checkout/products";
+.checkout-main {
+  position: relative;
+  @media(min-width:$tablet){
+    &:before{
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-color: rgba(148, 160, 115, 0.2);
+      right: 0;
+      top:  0;
+    }
+  }
+}
+
+.checkout {
+
+  &__hf-container {
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column-reverse;
+    }
+    height: 100%;
+  }
+}

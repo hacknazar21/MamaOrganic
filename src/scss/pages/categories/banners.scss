@@ -17,6 +17,14 @@
     }
     &__item{
         background-color: #F4F4F4;
+        @media(max-width:$tablet){
+            background: #FFFFFF;
+            border: 1px solid #CDCCCB;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
     }
 
 }
@@ -38,6 +46,7 @@
     &__title {
         font-weight: 500;
         font-size: rem(30);
+        @include adaptiveValue("font-size", 30, 16);
         line-height: math.div(36,30);
         text-transform: uppercase;
         color: #000000;
@@ -45,14 +54,41 @@
 
     &__text {
         font-weight: 400;
-        font-size: rem(16);
+        @include adaptiveValue("font-size", 16, 12);
         line-height: math.div(19,16);
-        
         color: #898989;
     }
 
     &__show-more {
         margin: 0;
+        &:before{
+            @extend %ic;
+            @extend ._icon-arrow-slider;
+            font-size: rem(32);
+            color: #FFFFFF;
+            @media(min-width:$tablet){
+                display: none;
+            }
+        }
+        @media(max-width:$tablet){
+            position: absolute;
+            bottom: rem(15);
+            right: rem(15);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4);
+            p{
+                display: none;
+            }
+            width: rem(60);
+            height: rem(60);
+            border-radius: 50%;
+            transform: rotate(180deg);
+            @media(any-hover: hover){
+              &:hover{
+                    text-decoration: none;
+              }
+            }
+        }
     }
 
     &__image {
@@ -60,9 +96,12 @@
         flex: 0 0 rem(354);
         padding-bottom: percent(344, 854);
         @media(max-width:$tablet){
-            flex: 0 0 rem(100);
+            flex: 0 0 rem(200);
         }
-        border-radius: 172px 0px 0px 172px;
+        @media(min-width:$tablet){
+            border-radius: 172px 0px 0px 172px;
+        }
+
         overflow: hidden;
         img {
             position: absolute;

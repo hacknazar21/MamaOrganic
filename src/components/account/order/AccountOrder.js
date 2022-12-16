@@ -1,464 +1,107 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../../Header";
 import Footer from "../../Footer";
 import Aside from "../Aside";
-import Input from "../../Input";
-import { Autoplay, Navigation, Swiper } from "swiper";
+import { useParams } from "react-router-dom";
+import useAuth from "../../../hooks/hooks.auth";
+import useHttp from "../../../hooks/hooks.http";
+import { ProfileContext } from "../../../context/ProfileContext";
 
-export default function AccountOrders() {
-  const slider = useRef();
+export default function AccountOrder() {
+  const { userData } = useContext(ProfileContext);
+  const { order_id } = useParams();
+  const [order, setOrder] = useState(null);
+  const { request } = useHttp();
+  const { token } = useAuth();
   useEffect(() => {
-    if (slider.current.className && window.innerWidth > 768)
-      new Swiper("." + slider.current.classList[0], {
-        modules: [Navigation, Autoplay],
-        observer: true,
-        observeParents: true,
-        slidesPerView: 3.5,
-        spaceBetween: 10,
-        autoHeight: false,
-        speed: 800,
-        // Эффекты
-        effect: "fade",
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        // navigation: {
-        //   nextEl: "." + slider.current.classList[0] + " .swiper-next-btn",
-        //   prevEl: "." + slider.current.classList[0] + " .swiper-prev-btn",
-        // },
-        breakpoints: {
-          320: {
-            slidesPerView: 2.8,
-          },
-          720: {
-            slidesPerView: 2.5,
-          },
-        },
-        // События
-        on: {},
-      });
-  }, [slider]);
+    (async () => {
+      if (token) {
+        const data = await request(`/api/orders/${order_id}/`, "GET", null, {
+          Authorization: `Bearer ${token}`,
+        });
+        if (data) {
+          setOrder(data);
+        }
+      }
+    })();
+  }, [token]);
   return (
     <>
       <Header />
       <main className="account-orders-main">
         <div className="account-main__wrapper">
-          <Aside />
+          <Aside userData={userData} />
           <section className="page__account-info account-info">
             <div className="account-info__wrapper">
-              <h1 className="account-info__title">Мои заказы</h1>
-              <div className="account-info__subtitle">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
-                </p>
-              </div>
-              <div className="account__orders">
-                <div className="account__orders-filter">
-                  <button className="account__orders-filter-item">
-                    Все заказы
-                  </button>
-                  <button className="account__orders-filter-item">
-                    Активные заказы
-                  </button>
-                </div>
-                <div className="account__orders-items">
-                  <div className="account__orders-item account-order">
-                    <div className="account-order__title">Заказ № 8</div>
-                    <div className="account-order__status-date">
-                      <div className="account-order__status">
-                        Активный заказ
-                      </div>
-                      <div className="account-order__date">8 сент. 2:20</div>
-                    </div>
-                    <div className="account-order__payed">
-                      <span>Оплачено:</span>
-                      <p>Да</p>
-                    </div>
-                    <div
-                      ref={slider}
-                      className="account-order__products order-products-slider"
-                    >
-                      <div className="order-products__swiper-wrapper swiper-wrapper">
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
+              <h1 className="account-info__title">Заказ № {order_id}</h1>
+              {/*<div className="account-info__subtitle">*/}
+              {/*</div>*/}
+              <div className="account-order">
+                <table className="account-order__table">
+                  <thead>
+                    <tr>
+                      <th>Фото </th>
+                      <th>Артикул</th>
+                      <th>Цена</th>
+                      <th>Название</th>
+                      <th>Количество </th>
+                      <th>Адрес</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {order?.products_amount.map((product) => {
+                      return (
+                        <tr>
+                          <td>
+                            <div>
+                              <img
+                                src={product.product.main_image}
+                                alt={product.product.name}
+                              />
+                            </div>
+                          </td>
+                          <td>12343125</td>
+                          <td>{product.product.price * product.amount} тг</td>
+                          <td>{product.product.name}</td>
+                          <td>{product.amount}</td>
+                          <td>
+                            г.{order.customer_city}, {order.customer_street},{" "}
+                            {order.customer_house}, {order.customer_floor} этаж,{" "}
+                            кв. {order.customer_apartment}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <div className="account-order__mobile">
+                  <div className="account-order__items">
+                    {order?.products_amount.map((product) => {
+                      return (
+                        <div className="account-order__item account-order-item">
+                          <div className="account-order-item__image">
                             <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
+                              src={product.product.main_image}
+                              alt={product.product.name}
                             />
                           </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
+                          <div className="account-order-item__info">
+                            <div className="account-order-item__article">
+                              {product.product.article}
+                            </div>
+                            <div className="account-order-item__name">
+                              {product.product.name}
+                            </div>
+                            <div className="account-order-item__price">
+                              {product.product.price * product.amount} тг
+                            </div>
+                            <div className="account-order-item__value">
+                              Количество: {product.amount}
+                            </div>
                           </div>
                         </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="" className="account-order__more">
-                      Смотреть подробнее
-                    </a>
-                  </div>
-                  <div className="account__orders-item account-order">
-                    <div className="account-order__title">Заказ № 8</div>
-                    <div className="account-order__status-date">
-                      <div className="account-order__status">
-                        Активный заказ
-                      </div>
-                      <div className="account-order__date">8 сент. 2:20</div>
-                    </div>
-                    <div className="account-order__payed">
-                      <span>Оплачено:</span>
-                      <p>Да</p>
-                    </div>
-                    <div
-                      ref={slider}
-                      className="account-order__products order-products-slider"
-                    >
-                      <div className="order-products__swiper-wrapper swiper-wrapper">
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="" className="account-order__more">
-                      Смотреть подробнее
-                    </a>
-                  </div>
-                  <div className="account__orders-item account-order">
-                    <div className="account-order__title">Заказ № 8</div>
-                    <div className="account-order__status-date">
-                      <div className="account-order__status">
-                        Активный заказ
-                      </div>
-                      <div className="account-order__date">8 сент. 2:20</div>
-                    </div>
-                    <div className="account-order__payed">
-                      <span>Оплачено:</span>
-                      <p>Да</p>
-                    </div>
-                    <div
-                      ref={slider}
-                      className="account-order__products order-products-slider"
-                    >
-                      <div className="order-products__swiper-wrapper swiper-wrapper">
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="" className="account-order__more">
-                      Смотреть подробнее
-                    </a>
-                  </div>
-                  <div className="account__orders-item account-order">
-                    <div className="account-order__title">Заказ № 8</div>
-                    <div className="account-order__status-date">
-                      <div className="account-order__status">
-                        Активный заказ
-                      </div>
-                      <div className="account-order__date">8 сент. 2:20</div>
-                    </div>
-                    <div className="account-order__payed">
-                      <span>Оплачено:</span>
-                      <p>Да</p>
-                    </div>
-                    <div
-                      ref={slider}
-                      className="account-order__products order-products-slider"
-                    >
-                      <div className="order-products__swiper-wrapper swiper-wrapper">
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="" className="account-order__more">
-                      Смотреть подробнее
-                    </a>
-                  </div>
-                  <div className="account__orders-item account-order">
-                    <div className="account-order__title">Заказ № 8</div>
-                    <div className="account-order__status-date">
-                      <div className="account-order__status">
-                        Активный заказ
-                      </div>
-                      <div className="account-order__date">8 сент. 2:20</div>
-                    </div>
-                    <div className="account-order__payed">
-                      <span>Оплачено:</span>
-                      <p>Да</p>
-                    </div>
-                    <div
-                      ref={slider}
-                      className="account-order__products order-products-slider"
-                    >
-                      <div className="order-products__swiper-wrapper swiper-wrapper">
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                        <div className="order-products__content-item swiper-slide order-product">
-                          <div className="order-product__image">
-                            <img
-                              src={require("../../../img/Home/FirstScreen/01.png")}
-                              alt=""
-                            />
-                          </div>
-                          <div className="order-product__name">
-                            Название товара в две строки апапывыыв
-                          </div>
-                          <div className="order-product__article">
-                            Артикул: 1222424
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="" className="account-order__more">
-                      Смотреть подробнее
-                    </a>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@
   }
 
   &__title {
-
+    border-bottom: none;
   }
 
   &__content {
@@ -25,6 +25,7 @@
 
   &__content-item {
     border: 1px solid #000000;
+    flex: 0 0 33.333%;
     padding: rem(40);
     transition: background-color 0.3s ease, color 0.3s ease;
     @media(any-hover: hover){
@@ -49,6 +50,9 @@
     @include adaptiveValue("font-size", 100, 25);
     line-height: math.div(140,100);
     text-align: center;
+    @media(max-width:$tablet){
+      width: rem(16);
+    }
   }
 
   &__title {
@@ -65,5 +69,8 @@
     @include adaptiveValue("font-size", 20, 16, 1920, 920);
     font-size: rem(16);
     line-height: math.div(24,20);
+    @media(max-width:$tablet){
+        text-indent: rem(46);
+    }
   }
 }

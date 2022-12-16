@@ -1,0 +1,129 @@
+.news {
+  &__content {
+    @include adaptiveValue("margin-top", 74, 50);
+  }
+}
+
+.news-content {
+  &__container {
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: rem(50);
+  }
+
+  &__item {
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column;
+    }
+    gap: rem(70);
+  }
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(148, 160, 115, 0.15);
+    margin: rem(30) 0;
+  }
+}
+
+.container-1 {
+}
+
+.news-item {
+  &__image {
+    position: relative;
+    padding-bottom: rem(314);
+    flex: 0 0 rem(420);
+    border-radius: 5px;
+    overflow: hidden;
+    @media(max-width:$tablet){
+      padding-bottom: rem(250);
+      flex: 0 0 auto;
+    }
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+  }
+
+  &__content {
+  }
+
+  &__header {
+    padding-bottom: rem(15);
+    margin-bottom: rem(15);
+    border-bottom: 1px solid #C7C7C7;
+  }
+
+  &__title {
+    font-family: 'Lovelace';
+    font-style: normal;
+    font-weight: 400;
+    font-size:rem(30);
+    line-height: math.div(42,30);
+    color: #41492C;
+  }
+
+  &__date {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: rem(16);
+    line-height: math.div(25,16);
+    color: #5C5C5C;
+  }
+
+  &__text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: rem(16);
+    line-height: math.div(25,16);
+    
+    color: #5C5C5C;
+  }
+}
+
+
+.news-pagination {
+  &__items {
+    display: flex;
+    gap: rem(30);
+    padding: rem(15) 0;
+    position: relative;
+  }
+  &__buttons{
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > .news-pagination__item.hide{
+      opacity: 0;
+    }
+  }
+  &__item {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    @include adaptiveValue("font-size", 22, 12);
+    line-height: math.div(27,22);
+    z-index: 10;
+    color: #A1A1A1;
+    &.active{
+      color: #41492C;
+    }
+  }
+}

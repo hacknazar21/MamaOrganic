@@ -1,0 +1,244 @@
+.page {
+  &__product-main {
+    margin-top: rem(20);
+    @include adaptiveValue("margin-bottom", 60, 20);
+  }
+}
+
+.product-main {
+  &__container {
+  }
+
+  &__box {
+    display: flex;
+    @media(max-width:$tablet){
+        flex-direction: column;
+    }
+    @include adaptiveValue("gap", 110, 10);
+  }
+
+  &__images-box {
+    display: flex;
+    gap: rem(20);
+    flex: 0 0 percent(650, 1402);
+    @media(max-width:$tablet){
+        gap: rem(5);
+    }
+  }
+
+  &__actions {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.container-1 {
+}
+
+.product-images {
+  .no-avl &{
+    img {
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+    }
+  }
+  &__main-image {
+    position: relative;
+    padding-bottom: percent(510, 685);
+    background-color: #fff;
+    flex: 1 1 auto;
+
+    &.open{
+      &:before{
+        position: fixed;
+        z-index: 10000;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.4);
+      }
+      img{
+          position: fixed;
+          z-index: 10001;
+          width: 100%;
+          height: 70%;
+          top: 50%;
+          transform: translateY(-50%);
+          object-fit: contain;
+      }
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  &__previews {
+    flex: 0 0 rem(120);
+    @media(max-width:$tablet){
+      flex: 0 0 rem(60);
+    }
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+
+  }
+  &__previews-image{
+    position: relative;
+    padding-bottom: 100%;
+    overflow: hidden;
+    @media(any-hover: hover){
+      &:hover{
+            cursor: pointer;
+      }
+    }
+    background-color: #fff;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      &.active{
+        border: 2px solid #94A073;
+      }
+    }
+  }
+}
+
+.product-actions {
+  &__mobile{
+    @media(min-width:$tablet){
+      display: none;
+    }
+    .product-actions__title{
+      margin: 0;
+    }
+  }
+  &__marks{
+    display: flex;
+      margin: rem(20) 0;
+    gap: rem(15);
+  }
+  &__mark{
+    position: relative;
+    height: rem(100);
+    border: 1px solid #94A073;
+    @media(max-width:$tablet){
+      height: rem(80);
+      flex: 0 0 rem(80);
+    }
+    cursor: pointer;
+    flex: 0 0 rem(100);
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      transform: translate(-50%,-50%);
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+    }
+  }
+  &__title {
+    font-family: 'Lovelace';
+    font-weight: 400;
+    @include adaptiveValue("font-size", 30, 18);
+    line-height: math.div(42,30);
+    color: #363636;
+    margin-bottom: rem(40);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    font-weight: 400;
+    @include adaptiveValue("font-size", 16, 14);
+    line-height: math.div(19,16);
+  }
+
+  &__info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: rem(10);
+    border-bottom: 1px solid #C7C7C7;
+  }
+
+  &__info-item-side {
+    display: flex;
+    gap: rem(20);
+    &:first-child{
+      color: #5C5C5C;
+      & > span{
+        text-decoration: underline;
+        color: #E55930;
+        font-weight: 500;
+      }
+    }
+    &:last-child{
+      color: #94A073;
+      & > span{
+        font-weight: 500;
+      }
+    }
+  }
+  &__footer{
+    margin-top: auto;
+  }
+  &__rating{
+    display: flex;
+    flex-direction: row;
+    gap: rem(15);
+    color: #DEB00F;
+
+  }
+  &__price-box {
+    margin-bottom: rem(20);
+  }
+
+  &__old-price {
+    font-weight: 400;
+    @include adaptiveValue("font-size", 22, 16);
+    line-height: math.div(26,22);
+    text-decoration: line-through;
+    color: #A2A2A2;
+    margin-bottom: rem(20);
+  }
+
+  &__price {
+    font-family: 'Lovelace';
+    font-style: normal;
+    font-weight: 400;
+    @include adaptiveValue("font-size", 40, 30);
+    line-height: math.div(56,40);
+    color: #94A073;
+  }
+
+  &__basket {
+    font-family: 'Lovelace';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 31px;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: rem(14) 0;
+    background-color: #94A073;
+    .no-avl & {
+      background-color: #8B8B8B;
+    }
+  }
+}
